@@ -12,7 +12,11 @@ bot.start(ctx => ctx.reply("Welcome, please enter your wallet address"));
 bot.on("text", ctx => {
     console.log(ctx.update.message.from.id);
     if (web3.utils.isAddress(ctx.update.message.text)) {
-        db.insert({ wallet: ctx.update.message.text.toLowerCase(), telegramId: ctx.update.message.from.id });
+        db.update(
+            { telegramId: ctx.update.message.from.id },
+            { wallet: ctx.update.message.text.toLowerCase(), telegramId: ctx.update.message.from.id },
+            { upsert: true }
+        );
         ctx.reply("Thank you, your wallet address is saved and being monitored on polygon blockchain");
     }
 });
