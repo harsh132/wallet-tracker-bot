@@ -7,8 +7,7 @@ const db = new Datastore({ filename: "users.db", autoload: true });
 
 const web3 = new Web3(process.env.WS_RPC);
 
-// const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN);
-const bot = new Telegraf("5594675918:AAHkK59ihuLzE65uY9XnKTBlCKmZtEuAwpg");
+const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN);
 
 bot.start(ctx => ctx.reply("Welcome, please enter your wallet address"));
 bot.on("text", ctx => {
