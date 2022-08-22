@@ -52,6 +52,7 @@ const subscription = web3.eth
     .on("connected", () => console.log("Connected !"))
     .on("data", log => {
         // console.log("Data : ", log);
+        if (log.topics[0] !== "0x4dfe1bbbcf077ddc3e01291eea2d5c70c2b422b415d95645b9adcfd678cb1d63") return;
         const token = log.address.toLowerCase();
         const sender = web3.eth.abi.decodeParameter("address", log.topics[1]);
         const receiver = web3.eth.abi.decodeParameter("address", log.topics[2]).toLowerCase();
